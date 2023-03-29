@@ -21,15 +21,9 @@
 
     var uname = document.getElementById("__BVID__9");
     var pwd = document.getElementById("__BVID__10");
-    //uname.setAttribute('value','hhuang@ushrauto.com');
-    //pwd.setAttribute('value','cupcake2022@MSU');
-    //uname.innerHTML="hhuang@ushrauto.com";
-    //pwd.innerHTML="cupcake2022@MSU";
-    // uname.value="hhuang@ushrauto.com";
-    //pwd.value="cupcake2022@MSU";
-    uname.value = "hhuang@ushrauto.com";
+    uname.value = "";
     uname.dispatchEvent(new Event('input'));
-    pwd.value = "cupcake2022@MSU";
+    pwd.value = "";
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
     obj2.click();
