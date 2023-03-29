@@ -21,8 +21,10 @@
 
     var uname = document.getElementById("__BVID__9");
     var pwd = document.getElementById("__BVID__10");
+   // add username for MMP
     uname.value = "";
     uname.dispatchEvent(new Event('input'));
+    // add password for MMP
     pwd.value = "";
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
