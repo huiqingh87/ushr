@@ -21,11 +21,17 @@
 
     var uname = document.getElementById("__BVID__9");
     var pwd = document.getElementById("__BVID__10");
+   //-----------------------------------------------
+   //This is the only part you need modified 
+   //Please input the MMP login credential here
+	
    // add username for MMP
     uname.value = "hhuang@ushrauto.com";
-    uname.dispatchEvent(new Event('input'));
     // add password for MMP
     pwd.value = "";
+   //-----------------------------------------------	
+	
+    uname.dispatchEvent(new Event('input'));
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
     obj2.click();
