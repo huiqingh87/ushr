@@ -25,7 +25,7 @@
     uname.value = "hhuang@ushrauto.com";
     uname.dispatchEvent(new Event('input'));
     // add password for MMP
-    pwd.value = "cupcake2022@MSU";
+    pwd.value = "";
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
     obj2.click();
