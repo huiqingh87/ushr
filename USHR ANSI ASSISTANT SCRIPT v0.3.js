@@ -128,9 +128,7 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("prjBtn").addEventListener(
-                "click", changeColors, false
-            );
+
 
             async function about(input) {
                 const text = `This is a small tool developed by Huiqing Huang
@@ -555,9 +553,7 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("prjBtn").addEventListener(
-                "click", changeColors, false
-            );
+  
 
             async function about(input) {
                 const text = `This is a small tool developed by Huiqing Huang
@@ -1151,9 +1147,6 @@
             );
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
-            );
-            document.getElementById("prjBtn").addEventListener(
-                "click", changeColors, false
             );
 
             async function about(input) {
