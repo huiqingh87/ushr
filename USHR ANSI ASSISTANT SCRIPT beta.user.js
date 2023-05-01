@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USHR ANSI ASSISTANT SCRIPT
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.5
 // @description  try to take over the world!
 // @author       You
 // @match        https://mmp.ushrauto.com/
@@ -21,11 +21,17 @@
 
     var uname = document.getElementById("__BVID__9");
     var pwd = document.getElementById("__BVID__10");
+   //-----------------------------------------------
+   //This is the only part you need modified 
+   //Please input the MMP login credential here
+	
    // add username for MMP
-    uname.value = "";
-    uname.dispatchEvent(new Event('input'));
+    uname.value = "hhuang@ushrauto.com";
     // add password for MMP
-    pwd.value = "";
+    pwd.value = "cupcake2022@MSU";
+   //-----------------------------------------------	
+	
+    uname.dispatchEvent(new Event('input'));
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
     obj2.click();
@@ -65,26 +71,28 @@
 
             var zNode = document.createElement('div');
             zNode.innerHTML = `<div class="btn-group"  role="group" aria-label="Basic example">
-        <button id="aboutBtn" class="btn btn-sm btn-warning" type="button">ABOUT</button>
-        &nbsp;&nbsp;<button id="yxBtn" class="btn btn-sm btn-warning" type="button">Y X</button>
+        &nbsp;&nbsp;<button id="prjBtn" class="btn btn-sm btn-success" type="button">PROJECT</button>
+        &nbsp;&nbsp;<button id="tabBtn" class="btn btn-sm btn-warning" type="button">TAB</button>
         &nbsp;&nbsp;<button id="svBtn" class="btn btn-sm btn-warning" type="button">SV</button>
         &nbsp;&nbsp;<button id="bingBtn" class="btn btn-sm btn-warning" type="button">Bing</button>
         &nbsp;&nbsp;<button id="nextBtn" class="btn btn-sm btn-warning" type="button">NEXT</button>
         &nbsp;&nbsp;<button id="lnBtn" class="btn btn-sm btn-warning" type="button">1 Lane</button>
         &nbsp;&nbsp;<button id="mkBtn" class="btn btn-sm btn-warning" type="button">2 Marker</button>
         &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">3 Xing</button>
-        &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">4SPEED</button>
-        &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">5ANSI</button>
-        &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">6Notes</button>
-        &nbsp;&nbsp;<button id="xyBtn" class="btn btn-sm btn-warning" type="button">X Y</button>
-        &nbsp;&nbsp;<button id="colorBtn" class="btn btn-sm btn-warning" type="button">COLOR</button></div>`;
+        &nbsp;&nbsp;<button id="primaBtn" class="btn btn-sm btn-warning" type="button">4Prima</button>
+        &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">5SPEED</button>
+        &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
+        &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">6ANSI</button>
+        &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">7Notes</button>
+        &nbsp;&nbsp;<button id="yxBtn" class="btn btn-sm btn-warning" type="button">Y X</button>
+        </div>`;
             zNode.setAttribute('id', 'myContainer');
             document.body.appendChild(zNode);
             $("#myContainer").draggable();
-
+            $("#prjBtn").html(task);  
 
             //--- Activate the newly added button.
-            document.getElementById("aboutBtn").addEventListener(
+            document.getElementById("prjBtn").addEventListener(
                 "click", about, false
             );
             //--- Activate the newly added button.
@@ -92,12 +100,12 @@
                 "click", goNext, false
             );
             //--- Activate the newly added button.
-            document.getElementById("xyBtn").addEventListener(
-                "click", getLatLon, false
-            );
-            //--- Activate the newly added button.
             document.getElementById("yxBtn").addEventListener(
                 "click", getLonLat, false
+            );
+            //--- Activate the newly added button.
+            document.getElementById("tabBtn").addEventListener(
+                "click", openTable, false
             );
             //--- Activate the newly added button.
             document.getElementById("bingBtn").addEventListener(
@@ -118,8 +126,12 @@
             document.getElementById("xingBtn").addEventListener(
                 "click", chk_xing3, false
             );
+            document.getElementById("primaBtn").addEventListener(
+                "click", chk_prima4, false
+            );
+
             document.getElementById("spdBtn").addEventListener(
-                "click", chk_spd4, false
+                "click", chk_spd5, false
             );
             document.getElementById("ansiBtn").addEventListener(
                 "click", ansi, false
@@ -127,15 +139,17 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("colorBtn").addEventListener(
-                "click", changeColors, false
-            );
+
 
             async function about(input) {
                 const text = `This is a small tool developed by Huiqing Huang
             to promote the efficiency on the mmp platform!
             Please contact Huiqing for any details!`;
                 alert(text);
+            }
+            async function openTable(input){
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(2) > button")[0];
+                btn.click();
             }
             async function goNext(input) {
                 const text = await navigator.clipboard.readText();
@@ -157,11 +171,12 @@
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -169,19 +184,10 @@
                     }
                 }
                 ansiBtn.click();
-
+                getBing();
+                getBing();
             }
 
-            async function changeColors(input) {
-                const oldColorNormalized = '#063c6d';
-                const newColor = '#ff0000';
-                document.querySelectorAll('*').forEach(el => {
-                    if (getComputedStyle(el).color === oldColorNormalized) {
-                        el.style.color = newColor
-                    }
-                });
-                alert("color changed");
-            }
 
 
             async function getLatLon(input) {
@@ -221,23 +227,19 @@
             }
 
 
-
-
-
-
             async function chk_lane1() {
-
 	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
 	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
 	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -278,10 +280,12 @@
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -319,10 +323,12 @@
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -346,7 +352,47 @@
              ansiBtn.click();
 
             }
-            async function chk_spd4(input) {
+
+           async function chk_prima4(input) {
+
+
+	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
+	             let spdSignBtn    = $("#Speed\\ Signs")[1];
+                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    console.log(lyrs[i]);
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+             var secdLyr = $("#Secondary > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+             secdLyr.dispatchEvent(new Event('click'));
+             var primaLyr = $("#Primary > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+             primaLyr.dispatchEvent(new Event('click'));
+             
+
+             primBtn.click();
+             secdBtn.click();
+             ansiBtn.click();
+
+            }
+
+            async function chk_spd5(input) {
                 // alert(speed.innerHTML);
 
 	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
@@ -355,10 +401,12 @@
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -384,16 +432,18 @@
                 gobtn.click();
                 gobtn.click();
 
- 	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
 	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
 	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -412,16 +462,18 @@
 
             }
             async function notes(input) {
- 	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
 	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
 	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
 	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
 	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
 	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
+                 let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
 	             let spdSignBtn    = $("#Speed\\ Signs")[1];
                  let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,spdSignBtn,ansiBtn]
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -448,7 +500,7 @@
 
             //--- Style our newly added elements using CSS.
 
-            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 400px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
+            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 500px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
 
 
 
@@ -472,31 +524,10 @@
             var xyinput = $(".coordinates-input-field")[0];
             var gobtn = $(".go-btn")[0];
 
-
-            var menu = $("#mainMenu")[0];
-            menu.style.width = "280px";
-            menu.style.background = "#fff";
-            menu.style.fontSize = "20px";
-
-            var tabview = $("#tabnav")[0];
-            tabview.style.height = "680px";
-            tabview.style.color = "#fff";
-            tabview.style.opacity = "70";
-
-            var prjs = $(".project");
-
-            for (const child of prjs) {
-                child.style.fontSize = "14px";
-                child.style.color = "rgba(6, 47, 86, 0.65)";
-                //console.log(child);
-            }
-
-            $(".menu-bg-blue-transparent")[0].style.background = "#d8b365";
-
             var zNode = document.createElement('div');
             zNode.innerHTML = `<div class="btn-group"  role="group" aria-label="Basic example">
-        <button id="aboutBtn" class="btn btn-sm btn-warning" type="button">ABOUT</button>
-        &nbsp;&nbsp;<button id="yxBtn" class="btn btn-sm btn-warning" type="button">Y X</button>
+        <button id="prjBtn" class="btn btn-sm btn-success" type="button">PROJECT</button>  
+        &nbsp;&nbsp;<button id="tabBtn" class="btn btn-sm btn-warning" type="button">TAB</button>
         &nbsp;&nbsp;<button id="svBtn" class="btn btn-sm btn-warning" type="button">SV</button>
         &nbsp;&nbsp;<button id="bingBtn" class="btn btn-sm btn-warning" type="button">Bing</button>
         &nbsp;&nbsp;<button id="nextBtn" class="btn btn-sm btn-warning" type="button">NEXT</button>
@@ -506,17 +537,19 @@
         &nbsp;&nbsp;<button id="edBtn" class="btn btn-sm btn-warning" type="button">4 EDGE</button>
         &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">5 XING</button>
         &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">6SPEED</button>
+        &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
         &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">7ANSI</button>
         &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">8Notes</button>
         &nbsp;&nbsp;<button id="xyBtn" class="btn btn-sm btn-warning" type="button">X Y</button>
-        &nbsp;&nbsp;<button id="colorBtn" class="btn btn-sm btn-warning" type="button">COLOR</button></div>`;
+        </div>`;
             zNode.setAttribute('id', 'myContainer');
             document.body.appendChild(zNode);
             $("#myContainer").draggable();
+            $("#prjBtn").html(task);
 
 
             //--- Activate the newly added button.
-            document.getElementById("aboutBtn").addEventListener(
+            document.getElementById("prjBtn").addEventListener(
                 "click", about, false
             );
             //--- Activate the newly added button.
@@ -528,8 +561,8 @@
                 "click", getLatLon, false
             );
             //--- Activate the newly added button.
-            document.getElementById("yxBtn").addEventListener(
-                "click", getLonLat, false
+            document.getElementById("tabBtn").addEventListener(
+                "click", openTable, false
             );
             //--- Activate the newly added button.
             document.getElementById("bingBtn").addEventListener(
@@ -563,7 +596,7 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("colorBtn").addEventListener(
+            document.getElementById("prjBtn").addEventListener(
                 "click", changeColors, false
             );
 
@@ -572,6 +605,11 @@
             to promote the efficiency on the mmp platform!
             Please contact Huiqing for any details!`;
                 alert(text);
+            }
+          
+            async function openTable(input){
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(2) > button")[0];
+                btn.click();
             }
             async function goNext(input) {
                 const text = await navigator.clipboard.readText();
@@ -1039,7 +1077,7 @@
 
             //--- Style our newly added elements using CSS.
 
-            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 400px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
+            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 500px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
 
 
 
@@ -1064,30 +1102,10 @@
             var gobtn = $(".go-btn")[0];
 
 
-            var menu = $("#mainMenu")[0];
-            menu.style.width = "280px";
-            menu.style.background = "#fff";
-            menu.style.fontSize = "20px";
-
-            var tabview = $("#tabnav")[0];
-            tabview.style.height = "680px";
-            tabview.style.color = "#fff";
-            tabview.style.opacity = "70";
-
-            var prjs = $(".project");
-
-            for (const child of prjs) {
-                child.style.fontSize = "14px";
-                child.style.color = "rgba(6, 47, 86, 0.65)";
-                //console.log(child);
-            }
-
-            $(".menu-bg-blue-transparent")[0].style.background = "#d8b365";
-
             var zNode = document.createElement('div');
             zNode.innerHTML = `<div class="btn-group"  role="group" aria-label="Basic example">
-        <button id="aboutBtn" class="btn btn-sm btn-warning" type="button">ABOUT</button>
-        &nbsp;&nbsp;<button id="yxBtn" class="btn btn-sm btn-warning" type="button">Y X</button>
+        <button id="prjBtn" class="btn btn-sm btn-success" type="button">PROJECT</button>
+        &nbsp;&nbsp;<button id="tabBtn" class="btn btn-sm btn-warning" type="button">TAB</button>
         &nbsp;&nbsp;<button id="svBtn" class="btn btn-sm btn-warning" type="button">SV</button>
         &nbsp;&nbsp;<button id="bingBtn" class="btn btn-sm btn-warning" type="button">Bing</button>
         &nbsp;&nbsp;<button id="nextBtn" class="btn btn-sm btn-warning" type="button">NEXT</button>
@@ -1097,17 +1115,18 @@
         &nbsp;&nbsp;<button id="edBtn" class="btn btn-sm btn-warning" type="button">4 EDGE</button>
         &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">5 XING</button>
         &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">6SPEED</button>
+        &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
         &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">7ANSI</button>
         &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">8Notes</button>
         &nbsp;&nbsp;<button id="xyBtn" class="btn btn-sm btn-warning" type="button">X Y</button>
-        &nbsp;&nbsp;<button id="colorBtn" class="btn btn-sm btn-warning" type="button">COLOR</button></div>`;
+        </div>`;
             zNode.setAttribute('id', 'myContainer');
             document.body.appendChild(zNode);
             $("#myContainer").draggable();
-
+            $("#prjBtn").html(task);
 
             //--- Activate the newly added button.
-            document.getElementById("aboutBtn").addEventListener(
+            document.getElementById("prjBtn").addEventListener(
                 "click", about, false
             );
             //--- Activate the newly added button.
@@ -1119,8 +1138,8 @@
                 "click", getLatLon, false
             );
             //--- Activate the newly added button.
-            document.getElementById("yxBtn").addEventListener(
-                "click", getLonLat, false
+            document.getElementById("tabBtn").addEventListener(
+                "click", openTable, false
             );
             //--- Activate the newly added button.
             document.getElementById("bingBtn").addEventListener(
@@ -1154,9 +1173,7 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("colorBtn").addEventListener(
-                "click", changeColors, false
-            );
+
 
             async function about(input) {
                 const text = `This is a small tool developed by Huiqing Huang
@@ -1164,7 +1181,10 @@
             Please contact Huiqing for any details!`;
                 alert(text);
             }
-
+            async function openTable(input){
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(2) > button")[0];
+                btn.click();
+            }
             async function goNext(input) {
                 const text = await navigator.clipboard.readText();
 
@@ -1207,6 +1227,7 @@
                 }
 
                 ansiBtn.click();
+                getBing();
 
             }
 
@@ -1490,7 +1511,7 @@
                 }
 
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
-                if (hasElement("lidarTiles")) {
+                if (!hasElement("lidarTiles")) {
                     lidar.click();
                 }
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
@@ -1640,7 +1661,7 @@
 
             //--- Style our newly added elements using CSS.
 
-            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 400px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
+            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 500px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
 
 
 
@@ -1665,30 +1686,11 @@
             var gobtn = $(".go-btn")[0];
 
 
-            var menu = $("#mainMenu")[0];
-            menu.style.width = "280px";
-            menu.style.background = "#fff";
-            menu.style.fontSize = "20px";
-
-            var tabview = $("#tabnav")[0];
-            tabview.style.height = "680px";
-            tabview.style.color = "#fff";
-            tabview.style.opacity = "70";
-
-            var prjs = $(".project");
-
-            for (const child of prjs) {
-                child.style.fontSize = "14px";
-                child.style.color = "rgba(6, 47, 86, 0.65)";
-                //console.log(child);
-            }
-
-            $(".menu-bg-blue-transparent")[0].style.background = "#d8b365";
 
             var zNode = document.createElement('div');
             zNode.innerHTML = `<div class="btn-group"  role="group" aria-label="Basic example">
-        <button id="aboutBtn" class="btn btn-sm btn-warning" type="button">ABOUT</button>
-        &nbsp;&nbsp;<button id="yxBtn" class="btn btn-sm btn-warning" type="button">Y X</button>
+        <button id="prjBtn" class="btn btn-sm btn-success" type="button">PROJECT</button>
+        &nbsp;&nbsp;<button id="tabBtn" class="btn btn-sm btn-warning" type="button">TAB</button>
         &nbsp;&nbsp;<button id="svBtn" class="btn btn-sm btn-warning" type="button">SV</button>
         &nbsp;&nbsp;<button id="bingBtn" class="btn btn-sm btn-warning" type="button">Bing</button>
         &nbsp;&nbsp;<button id="nextBtn" class="btn btn-sm btn-warning" type="button">NEXT</button>
@@ -1698,17 +1700,18 @@
         &nbsp;&nbsp;<button id="edBtn" class="btn btn-sm btn-warning" type="button">4MERGE</button>
         &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">6UNSAFE</button>
         &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">7SPEED</button>
+        &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
         &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">7ANSI</button>
         &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">8Notes</button>
         &nbsp;&nbsp;<button id="xyBtn" class="btn btn-sm btn-warning" type="button">X Y</button>
-        &nbsp;&nbsp;<button id="colorBtn" class="btn btn-sm btn-warning" type="button">COLOR</button></div>`;
+        </div>`;
             zNode.setAttribute('id', 'myContainer');
             document.body.appendChild(zNode);
             $("#myContainer").draggable();
-
+            $("#prjBtn").html(task);
 
             //--- Activate the newly added button.
-            document.getElementById("aboutBtn").addEventListener(
+            document.getElementById("prjBtn").addEventListener(
                 "click", about, false
             );
             //--- Activate the newly added button.
@@ -1720,8 +1723,8 @@
                 "click", getLatLon, false
             );
             //--- Activate the newly added button.
-            document.getElementById("yxBtn").addEventListener(
-                "click", getLonLat, false
+            document.getElementById("tabBtn").addEventListener(
+                "click", openTable, false
             );
             //--- Activate the newly added button.
             document.getElementById("bingBtn").addEventListener(
@@ -1755,15 +1758,18 @@
             document.getElementById("noteBtn").addEventListener(
                 "click", notes, false
             );
-            document.getElementById("colorBtn").addEventListener(
-                "click", changeColors, false
-            );
+
 
             async function about(input) {
                 const text = `This is a small tool developed by Huiqing Huang
             to promote the efficiency on the mmp platform!
             Please contact Huiqing for any details!`;
                 alert(text);
+            }
+
+            async function openTable(input){
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(2) > button")[0];
+                btn.click();
             }
             async function goNext(input) {
                 const text = await navigator.clipboard.readText();
@@ -1804,6 +1810,7 @@
 
                 }
                 ansiBtn.click();
+                getBing();
 
             }
 
@@ -2114,6 +2121,8 @@
                 let maxSpeedLyr = $("#max_speed_limits > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 maxSpeedLyr.dispatchEvent(new Event('click'));
                 maxSpeedBtn.click();
+                ansiBtn.click();
+                getBing();
             }
             async function ansi(input) {
                 gobtn.click();
@@ -2190,7 +2199,7 @@
 
             //--- Style our newly added elements using CSS.
 
-            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 400px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
+            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 500px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
 
 
 
