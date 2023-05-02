@@ -26,9 +26,9 @@
    //Please input the MMP login credential here
 	
    // add username for MMP
-    uname.value = "hhuang@ushrauto.com";
+    uname.value = "your_user_name@ushrauto.com";
     // add password for MMP
-    pwd.value = "cupcake2022@MSU";
+    pwd.value = "";
    //-----------------------------------------------	
 	
     uname.dispatchEvent(new Event('input'));
@@ -2033,7 +2033,9 @@
                 optional_point_feature_lyr.dispatchEvent(new Event('click'));
                 let mandatory_point_feature_lyr = $("#mandatory_point_feature > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 mandatory_point_feature_lyr.dispatchEvent(new Event('click'));
-
+                let merge_context_feature_lyr = $("#merge_context_features > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                merge_context_feature_lyr.dispatchEvent(new Event('click'));
+                mergeContextBtn.click();
                 mergePtBtn.click();
                 splitPtBtn.click();
                 optiPtBtn.click();
@@ -2059,6 +2061,8 @@
                 let maxSpeedBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
+                let connectionBtn = $("#connection_segments > div.col-sm-8.col > button")[0];
+
                 let lyrs = [segBtn, laneBtn, laneLineDeliBtn, roadEdgeDeliBtn, roadShdrDeliBtn, splitPtBtn, mergePtBtn, optiPtBtn, mandPtBtn, overPtBtn, unsafeStartBtn, unsafeEndBtn, mergeContextBtn, maxSpeedBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     //console.log(lyrs[i]);
@@ -2076,15 +2080,15 @@
                 unsafeStLyr.dispatchEvent(new Event('click'));
                 let unsafeEndLyr = $("#unsafe_stretches_ends > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 unsafeEndLyr.dispatchEvent(new Event('click'));
-                let mConLyr = $("#merge_context_features > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                mConLyr.dispatchEvent(new Event('click'));
+                let connection_segments_Lyr = $("#connection_segments > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                connection_segments_Lyr.dispatchEvent(new Event('click'));
                 let ohPtLyr = $("#overhead_surface_point_feature > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ohPtLyr.dispatchEvent(new Event('click'));
 
                 unsafeStartBtn.click();
                 unsafeEndBtn.click();
                 overPtBtn.click();
-                mergeContextBtn.click();
+                connectionBtn.click();
                 ansiBtn.click();
 
             }
