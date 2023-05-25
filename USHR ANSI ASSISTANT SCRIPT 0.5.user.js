@@ -1698,8 +1698,8 @@
         &nbsp;&nbsp;<button id="lnBtn" class="btn btn-sm btn-warning" type="button">2 LANE</button>
         &nbsp;&nbsp;<button id="lnPtBtn" class="btn btn-sm btn-warning" type="button">3DELIS</button>
         &nbsp;&nbsp;<button id="edBtn" class="btn btn-sm btn-warning" type="button">4MERGE</button>
-        &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">6UNSAFE</button>
-        &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">7SPEED</button>
+        &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">5UNSAFE</button>
+        &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">6SPEED</button>
         &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
         &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">7ANSI</button>
         &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">8Notes</button>
