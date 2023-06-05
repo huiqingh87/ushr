@@ -4,8 +4,8 @@
 // @version      0.5
 // @description  try to take over the world!
 // @author       You
-// @match        https://mmp.ushrauto.com/
-// @match        https://mmp.ushrauto.com/#/login
+// @match        https://*.ushrauto.com/
+// @match        https://*.ushrauto.com/#/login
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=ushrauto.com
 // @grant        GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
