@@ -985,6 +985,10 @@
                         lyrs[i].click();
                     }
                 }
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
 
 
 
@@ -1054,6 +1058,10 @@
                 let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
 
 
                 let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, rtdBtn, signBtn, signConnBtn, pmBtn, pmConnBtn, faBtn, ansiBtn]
@@ -1427,6 +1435,7 @@
                 let laneLineLyr = $("#Lane\\ Lines > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 laneLineLyr.dispatchEvent(new Event('click'));
                 laneLineBtn.click();
+		    
                 ansiBtn.click();
 
             }
@@ -1517,8 +1526,7 @@
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
                 ansiBtn.click();
-                let laneAttrLyr = $("#Lane\\ Attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                laneAttrLyr.dispatchEvent(new Event('click'));
+
                 let pmConnLyr = $("#Pavement\\ Marking\\ Connections > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 pmConnLyr.dispatchEvent(new Event('click'));
                 let signConnLyr = $("#Sign\\ Lane\\ Mapping > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
@@ -1527,14 +1535,15 @@
                 pmLyr.dispatchEvent(new Event('click'));
                 let signLyr = $("#Signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 signLyr.dispatchEvent(new Event('click'));
+                let laneAttrLyr = $("#Lane\\ Attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneAttrLyr.dispatchEvent(new Event('click'));
 
 
-                laneAttrBtn.click()
                 pmBtn.click();
                 //pmConnBtn.click();
                 signBtn.click();
                 //signConnBtn.click();
-
+                laneAttrBtn.click()
 
             }
             async function chk_spd6(input) {
@@ -1574,7 +1583,10 @@
                 let signLyr = $("#Signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 signLyr.dispatchEvent(new Event('click'));
                 signBtn.click();
-
+		    
+                var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                ansiLyr.dispatchEvent(new Event('click'));
+                ansiBtn.click();
             }
             async function ansi(input) {
                 gobtn.click();
@@ -1606,6 +1618,10 @@
                         lyrs[i].click();
                     }
 
+                }
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
                 }
 
 
@@ -2154,6 +2170,10 @@
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
+                }
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
                 }
 
 
