@@ -928,7 +928,10 @@
                     }
                 }
 
-
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
 
                 //let laneLyr= $("#lanes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 //laneLyr.dispatchEvent(new Event('click'));
@@ -970,7 +973,10 @@
                     }
                 }
 
-
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
                 ansiBtn.click();
@@ -1004,6 +1010,11 @@
                         lyrs[i].click();
                     }
                 }
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+		    
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
                 ansiBtn.click();
@@ -1549,7 +1560,10 @@
                     }
 
                 }
-
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
 
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
@@ -2094,7 +2108,10 @@
                     }
                 }
 
-
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
                 ansiBtn.click();
