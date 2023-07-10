@@ -963,10 +963,10 @@
                 laneAttrLyr.dispatchEvent(new Event('click'));
 
                 pmBtn.click();
-                pmConnBtn.click();
+                //pmConnBtn.click();
                 rtdBtn.click();
                 signBtn.click();
-                signConnBtn.click();
+                //signConnBtn.click();
                 laneAttrBtn.click();
 
             }
