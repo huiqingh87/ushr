@@ -946,10 +946,10 @@
                     lidar.click();
                 }
 
-                let pmConnLyr = $("#pavement_markings_conn > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                pmConnLyr.dispatchEvent(new Event('click'));
-                let signConnLyr = $("#signs_conn > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                signConnLyr.dispatchEvent(new Event('click'));
+                //let pmConnLyr = $("#pavement_markings_conn > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //pmConnLyr.dispatchEvent(new Event('click'));
+                //let signConnLyr = $("#signs_conn > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //signConnLyr.dispatchEvent(new Event('click'));
                 let pmLyr = $("#pavement_markings > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 pmLyr.dispatchEvent(new Event('click'));
 
