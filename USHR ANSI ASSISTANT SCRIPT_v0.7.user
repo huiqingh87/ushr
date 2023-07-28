@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USHR ANSI ASSISTANT SCRIPT
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  try to take over the world!
 // @author       You
 // @match        https://*.ushrauto.com/
@@ -22,15 +22,15 @@
     var uname = document.getElementById("__BVID__9");
     var pwd = document.getElementById("__BVID__10");
    //-----------------------------------------------
-   //This is the only part you need modified 
+   //This is the only part you need modified
    //Please input the MMP login credential here
-	
+
    // add username for MMP
-    uname.value = "username@ushrauto.com";
+    uname.value = "******@ushrauto.com";
     // add password for MMP
-    pwd.value = "****";
-   //-----------------------------------------------	
-	
+    pwd.value = "**********";
+   //-----------------------------------------------
+
     uname.dispatchEvent(new Event('input'));
     pwd.dispatchEvent(new Event('input'));
     const obj2 = document.getElementById("loginBtn");
@@ -89,7 +89,7 @@
             zNode.setAttribute('id', 'myContainer');
             document.body.appendChild(zNode);
             $("#myContainer").draggable();
-            $("#prjBtn").html(task);  
+            $("#prjBtn").html(task);
 
             //--- Activate the newly added button.
             document.getElementById("prjBtn").addEventListener(
@@ -164,25 +164,30 @@
                 gobtn.click();
                 gobtn.click();
                 getBing();
-
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
                 ansiBtn.click();
                 getBing();
                 getBing();
@@ -228,24 +233,30 @@
 
 
             async function chk_lane1() {
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
 
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
                 if (!hasElement("lidarTiles")) {
@@ -274,24 +285,30 @@
                 }
 
 
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
 
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
                 if (!hasElement("lidarTiles")) {
@@ -300,15 +317,15 @@
 
 
 
-			var edgeLyr = $("#Edges > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-			edgeLyr.dispatchEvent(new Event('click'));
-			var barrierLyr = $("#Barriers > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-			barrierLyr.dispatchEvent(new Event('click'));
-			var markerLyr = $("#Marker > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-			markerLyr.dispatchEvent(new Event('click'));
-			barrierBtn.click()
-			markerBtn.click()
-			edgeBtn.click()
+            var edgeLyr = $("#Edges > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            edgeLyr.dispatchEvent(new Event('click'));
+            var barrierLyr = $("#Barriers > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            barrierLyr.dispatchEvent(new Event('click'));
+            var markerLyr = $("#Marker > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            markerLyr.dispatchEvent(new Event('click'));
+            barrierBtn.click()
+            markerBtn.click()
+            edgeBtn.click()
 
 
             }
@@ -317,18 +334,23 @@
             async function chk_xing3(input) {
 
 
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -341,39 +363,52 @@
                 if (!hasElement("lidarTiles")) {
                     lidar.click();
                 }
+                var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                ansiLyr.dispatchEvent(new Event('click'));
+            var intsecLyr = $("#intersections > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            intsecLyr.dispatchEvent(new Event('click'));
+            var xingLyr = $("#Crossings > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            xingLyr.dispatchEvent(new Event('click'));
+            var objectLyr = $("#Objects > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            objectLyr.dispatchEvent(new Event('click'));
+            var signLyr = $("#Signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+            signLyr.dispatchEvent(new Event('click'));
 
-
-             var xingLyr = $("#Crossings > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-             xingLyr.dispatchEvent(new Event('click'));
-             var signLyr = $("#Signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-             signLyr.dispatchEvent(new Event('click'));
-             xingBtn.click();
-             signBtn.click();
-             ansiBtn.click();
+            objectBtn.click();
+            intsecBtn.click();
+            xingBtn.click();
+            signBtn.click();
+            ansiBtn.click();
 
             }
 
            async function chk_prima4(input) {
 
 
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
 
 
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
@@ -384,7 +419,7 @@
              secdLyr.dispatchEvent(new Event('click'));
              var primaLyr = $("#Primary > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
              primaLyr.dispatchEvent(new Event('click'));
-             
+
 
              primBtn.click();
              secdBtn.click();
@@ -394,19 +429,22 @@
 
             async function chk_spd5(input) {
                 // alert(speed.innerHTML);
-
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
@@ -432,24 +470,30 @@
                 gobtn.click();
                 gobtn.click();
 
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
                 if (hasElement("lidarTiles")) {
                     lidar.click();
@@ -462,24 +506,30 @@
 
             }
             async function notes(input) {
-	             let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
-	             let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
-	             let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
-	             let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
-	             let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
-	             let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
+                 let laneBtn       = $("#Lane > div.col-sm-8.col > button")[0];
+                 let edgeBtn       = $("#Edges > div.col-sm-8.col > button")[0];
+                 let barrierBtn    = $("#Barriers > div.col-sm-8.col > button")[0];
+                 let markerBtn     = $("#Marker > div.col-sm-8.col > button")[0];
+                 let signBtn       = $("#Signs > div.col-sm-8.col > button")[0];
+                 let xingBtn       = $("#Crossings > div.col-sm-8.col > button")[0];
                  let primBtn       = $("#Primary > div.col-sm-8.col > button")[0];
                  let secdBtn       = $("#Secondary > div.col-sm-8.col > button")[0];
-	             let spdSignBtn    = $("#Speed\\ Signs")[1];
-                 let ansiBtn         = $("#ANSI > div.col-sm-8.col > button")[0];
+                 let spdSignBtn    = $("#Speed\\ Signs > div.col-sm-8.col > button")[0];
+                 let objectBtn    = $("#Objects > div.col-sm-8.col > button")[0];
+                 let intsecBtn    = $("#intersections > div.col-sm-8.col > button")[0];
+                 let ansiBtn       = $("#ANSI > div.col-sm-8.col > button")[0];
 
-                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,ansiBtn]
+
+
+
+                let lyrs = [laneBtn,edgeBtn,barrierBtn,markerBtn,signBtn,xingBtn,primBtn,secdBtn, spdSignBtn,objectBtn,intsecBtn,ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
                 if (hasElement("lidarTiles")) {
                     lidar.click();
@@ -520,7 +570,7 @@
             expzdiv.style.display = "none";
 
             // check steps
-			var check_pts = Array(6).fill(0);
+            var check_pts = Array(6).fill(0);
 
             // lat lon widget
             var xyinput = $(".coordinates-input-field")[0];
@@ -712,7 +762,7 @@
 
             async function chk_seg1(input) {
 
-            	check_pts[0] = 1;
+                check_pts[0] = 1;
                 let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
                 let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
                 let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
@@ -751,7 +801,7 @@
 
 
             async function chk_lane2(input) {
-            	check_pts[1] = 1;
+                check_pts[1] = 1;
                 let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
                 let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
                 let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
@@ -795,7 +845,7 @@
 
 
             async function chk_lnpt3(input) {
-            	check_pts[2] = 1;
+                check_pts[2] = 1;
                 try {
                 speed = $("#editor9")[0];
                 console.log(speed);
@@ -866,7 +916,7 @@
             }
 
             async function chk_ed4(input) {
-            	check_pts[3] = 1;
+                check_pts[3] = 1;
                 let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
                 let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
                 let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
@@ -913,7 +963,7 @@
             }
 
             async function chk_xing5(input) {
-            	check_pts[4] = 1;
+                check_pts[4] = 1;
                 let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
                 let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
                 let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
@@ -971,7 +1021,7 @@
 
             }
             async function chk_spd6(input) {
-            	check_pts[5] = 1;
+                check_pts[5] = 1;
                 // alert(speed.innerHTML);
                 let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
                 let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
@@ -999,7 +1049,7 @@
                     }
                 }
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
-                
+
                 lidar.click();
 
 
@@ -1020,12 +1070,12 @@
             }
             async function ansi(input) {
                 var errorMsg = "Steps Unchecked:";
-            	const errorMessage = ["Segment", "Lane", "Lane Lines", "Edge", "X'ing /Sign", "Speed"];
-				for (let i = 0; i < check_pts.length; i++) {
-				  if (check_pts[i] === 0) {
-				    errorMsg += "\n Step #"+ (i+1) +" - " + errorMessage[i];
-				  }
-				}
+                const errorMessage = ["Segment", "Lane", "Lane Lines", "Edge", "X'ing /Sign", "Speed"];
+                for (let i = 0; i < check_pts.length; i++) {
+                  if (check_pts[i] === 0) {
+                    errorMsg += "\n Step #"+ (i+1) +" - " + errorMessage[i];
+                  }
+                }
                 if (errorMsg !== "Steps Unchecked:") {
                     alert(errorMsg);
                 }
