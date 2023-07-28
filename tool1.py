@@ -1,14 +1,21 @@
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow,QAction, QDialog, QWidget, QFormLayout, QLabel, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QToolButton, QMessageBox, QListWidget,QListWidgetItem,QDialogButtonBox, QAbstractItemView
+from PySide2.QtWidgets import QApplication, QMainWindow,QAction, QDialog, QWidget, QFormLayout, QLabel,QCheckBox, QFileDialog, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout, QToolButton, QMessageBox, QListWidget,QListWidgetItem,QDialogButtonBox, QAbstractItemView
 from PySide2.QtCore import QSize,  Qt
 from PySide2.QtGui import QIcon
 from resources import *
 import geopandas as gpd
 import os, time
+import webbrowser
 
 current_script_path = os.path.abspath(__file__)
 current_folder = os.path.dirname(current_script_path)
 
+
+def open_excel_file(file_path):
+    try:
+        os.startfile(file_path)
+    except Exception as e:
+        print(f"Error occurred: {e}")
 
 class ColumnSelectDialog(QDialog):
     def __init__(self, keys, parent=None):
@@ -126,6 +133,11 @@ class CentroidTool(QMainWindow):
 
         # Row 3 with Save and Close buttons
         button_layout = QHBoxLayout()
+        # Create the "Open After" checkbox
+        self.open_after_checkbox = QCheckBox("Open After")
+        self.open_after_checkbox.setChecked(True)
+        self.open_after_checkbox.setFixedWidth(120)
+        button_layout.addWidget(self.open_after_checkbox)
         self.save_button = QPushButton("Save")
         self.close_button = QPushButton("Close")
         for s in (self.save_button, self.close_button):
@@ -146,10 +158,18 @@ class CentroidTool(QMainWindow):
         self.end_time   = None
         self.csDialog   = None
         self.selected_keys = []
+        self.open_after = True  
         self.shapeBtn.clicked.connect(self.load_data)
         self.outputBtn.clicked.connect(self.set_csv_path)
         self.save_button.clicked.connect(self.save_data)
         self.close_button.clicked.connect(self.close_app)
+        # Connect the "Open After" checkbox state change signal to a slot
+        self.open_after_checkbox.stateChanged.connect(self.open_after_changed)
+    def open_after_changed(self):
+        if self.open_after_checkbox.isChecked():
+            self.open_after = True  
+        else:
+            self.open_after = False
     def close_app(self):
         QApplication.quit()
     def show_about_dialog(self):
@@ -200,6 +220,9 @@ class CentroidTool(QMainWindow):
             running_time = self.end_time - self.start_time
             message = "New CSV file with centroid coordinates is saved!\nElapsed time:  %.2f seconds"%running_time
             QMessageBox.information(self, "Elapsed Time", message)
+            webbrowser.open(os.path.dirname(os.path.realpath(self.output_fn)))
+            if self.open_after:
+                open_excel_file(self.output_fn)
         except:
             print("ERROR OCCURRED")
     def save_centroid(self):
