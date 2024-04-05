@@ -3,10 +3,13 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.8
 // @description  try to take over the world!
-// @author       You
+// @author       Huiqing Huang
+// @Company      DMP North America
+// @startdate    10/05/2022
+// @lastupdate   04/05/2024
 // @match        https://*.ushrauto.com/
 // @match        https://*.ushrauto.com/#/login
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=ushrauto.com
+// @icon         https://zx85b9.p3cdn1.secureserver.net/wp-content/uploads/2023/05/dmp-logo.svg?time=1712275333
 // @grant        GM_addStyle
 // @require http://code.jquery.com/jquery-3.4.1.min.js
 // @require https://code.jquery.com/ui/1.10.4/jquery-ui.js
