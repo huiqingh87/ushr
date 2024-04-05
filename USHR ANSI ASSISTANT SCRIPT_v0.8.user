@@ -1301,18 +1301,17 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
-                    console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
-
                 }
                 ansiBtn.click();
 
@@ -1386,17 +1385,17 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
-                    console.log(lyrs[i]);
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
-
                 }
 
 
@@ -1425,11 +1424,13 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
@@ -1479,12 +1480,13 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
@@ -1540,11 +1542,13 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
@@ -1587,12 +1591,13 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
@@ -1641,16 +1646,21 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+                maxSpdBtn.click();
+                OtonBtn.click();
+
                 var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
 
                 lidar.click();
@@ -1661,6 +1671,10 @@
                 //let laneLyr= $("#lanes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 //laneLyr.dispatchEvent(new Event('click'));
                 //laneBtn.click();
+
+
+
+
 
                 let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 signLyr.dispatchEvent(new Event('click'));
@@ -1701,12 +1715,13 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
 
-
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
@@ -1737,6 +1752,8 @@
                 //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
                 //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
                 //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let maxSpdBtn = $("#max_speed_limits > div.col-sm-8.col > button")[0];
+                let OtonBtn = $("#Otonomo > div.col-sm-8.col > button")[0];
                 let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
                 let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
 
@@ -1746,12 +1763,14 @@
                 }
 
 
-                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn, maxSpdBtn,OtonBtn, faBtn, ansiBtn]
                 for (var i = 0; i < lyrs.length; i++) {
                     if (hasClass(lyrs[i], "available-enabled")) {
                         lyrs[i].click();
                     }
                 }
+
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
                 ansiBtn.click();
