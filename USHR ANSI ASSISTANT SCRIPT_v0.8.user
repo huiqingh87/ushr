@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USHR ANSI ASSISTANT SCRIPT
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.8
 // @description  try to take over the world!
 // @author       You
 // @match        https://*.ushrauto.com/
@@ -1170,7 +1170,615 @@
 
 
         }, 5000)
-    } else if (task === "NISSAN") {
+    }  else if (task === "UDBX2") {
+        setTimeout(function() {
+
+            // zoom widget
+            var expzdiv = $("#expandableZoom")[0];
+            expzdiv.style.display = "none";
+
+            // check steps
+            var check_pts = Array(6).fill(0);
+
+            // lat lon widget
+            var xyinput = $(".coordinates-input-field")[0];
+            var gobtn = $(".go-btn")[0];
+
+            var zNode = document.createElement('div');
+            zNode.innerHTML = `<div class="btn-group"  role="group" aria-label="Basic example">
+        <button id="prjBtn" class="btn btn-sm btn-success" type="button">PROJECT</button>
+        &nbsp;&nbsp;<button id="tabBtn" class="btn btn-sm btn-warning" type="button">TAB</button>
+        &nbsp;&nbsp;<button id="svBtn" class="btn btn-sm btn-warning" type="button">SV</button>
+        &nbsp;&nbsp;<button id="bingBtn" class="btn btn-sm btn-warning" type="button">Bing</button>
+        &nbsp;&nbsp;<button id="nextBtn" class="btn btn-sm btn-warning" type="button">NEXT</button>
+        &nbsp;&nbsp;<button id="segBtn" class="btn btn-sm btn-warning" type="button">1 SEG</button>
+        &nbsp;&nbsp;<button id="lnBtn" class="btn btn-sm btn-warning" type="button">2 LANE</button>
+        &nbsp;&nbsp;<button id="lnPtBtn" class="btn btn-sm btn-warning" type="button">3 LN PT</button>
+        &nbsp;&nbsp;<button id="edBtn" class="btn btn-sm btn-warning" type="button">4 EDGE</button>
+        &nbsp;&nbsp;<button id="xingBtn" class="btn btn-sm btn-warning" type="button">5 XING</button>
+        &nbsp;&nbsp;<button id="spdBtn" class="btn btn-sm btn-warning" type="button">6SPEED</button>
+        &nbsp;&nbsp;<button id="aboutBtn" class="btn btn-sm btn-primary rounded-pill" type="button">-99</button>
+        &nbsp;&nbsp;<button id="ansiBtn" class="btn btn-sm btn-warning" type="button">7ANSI</button>
+        &nbsp;&nbsp;<button id="noteBtn" class="btn btn-sm btn-warning" type="button">8Notes</button>
+        &nbsp;&nbsp;<button id="xyBtn" class="btn btn-sm btn-warning" type="button">X Y</button>
+        </div>`;
+            zNode.setAttribute('id', 'myContainer');
+            document.body.appendChild(zNode);
+            $("#myContainer").draggable();
+            $("#prjBtn").html(task);
+
+
+            //--- Activate the newly added button.
+            document.getElementById("prjBtn").addEventListener(
+                "click", about, false
+            );
+            //--- Activate the newly added button.
+            document.getElementById("nextBtn").addEventListener(
+                "click", goNext, false
+            );
+            //--- Activate the newly added button.
+            document.getElementById("xyBtn").addEventListener(
+                "click", getLatLon, false
+            );
+            //--- Activate the newly added button.
+            document.getElementById("tabBtn").addEventListener(
+                "click", openTable, false
+            );
+            //--- Activate the newly added button.
+            document.getElementById("bingBtn").addEventListener(
+                "click", getBing, false
+            );
+
+            document.getElementById("svBtn").addEventListener(
+                "click", gsv, false
+            );
+            document.getElementById("segBtn").addEventListener(
+                "click", chk_seg1, false
+            );
+            document.getElementById("lnBtn").addEventListener(
+                "click", chk_lane2, false
+            );
+            document.getElementById("lnPtBtn").addEventListener(
+                "click", chk_lnpt3, false
+            );
+            document.getElementById("edBtn").addEventListener(
+                "click", chk_ed4, false
+            );
+            document.getElementById("xingBtn").addEventListener(
+                "click", chk_xing5, false
+            );
+            document.getElementById("spdBtn").addEventListener(
+                "click", chk_spd6, false
+            );
+            document.getElementById("ansiBtn").addEventListener(
+                "click", ansi, false
+            );
+            document.getElementById("noteBtn").addEventListener(
+                "click", notes, false
+            );
+            document.getElementById("prjBtn").addEventListener(
+                "click", changeColors, false
+            );
+
+            async function about(input) {
+                const text = `This is a small tool developed by Huiqing Huang
+            to promote the efficiency on the mmp platform!
+            Please contact Huiqing for any details!`;
+                alert(text);
+            }
+
+            async function openTable(input){
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(2) > button")[0];
+                btn.click();
+            }
+            async function goNext(input) {
+                const text = await navigator.clipboard.readText();
+
+                //#expandableCoordinates > div > div.coordinates-input-field.active > div > div.col > input
+                const xytext = $("#expandableCoordinates > div > div.coordinates-input-field > div > div.col > input")[0];
+
+
+                xytext.value = text;
+                xytext.dispatchEvent(new Event('input'));
+                //xyinput.classList.add("active");
+                gobtn.click();
+                gobtn.click();
+                check_pts = Array(6).fill(0);
+
+
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    console.log(lyrs[i]);
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+
+                }
+                ansiBtn.click();
+
+            }
+
+            async function changeColors(input) {
+                const oldColorNormalized = '#063c6d';
+                const newColor = '#ff0000';
+                document.querySelectorAll('*').forEach(el => {
+                    if (getComputedStyle(el).color === oldColorNormalized) {
+                        el.style.color = newColor
+                    }
+                });
+                alert("color changed");
+            }
+
+
+            async function getLatLon(input) {
+                const obj = $("#coordinatesDisplay>p")[0];
+                console.log(obj);
+                var text = obj.innerHTML;
+                await navigator.clipboard.writeText(text.replace('<br data-v-5504b43d=\"\">', ''));
+            }
+
+            async function getLonLat(input) {
+                var obj = $("#coordinatesDisplay>p")[0];
+                console.log(obj);
+                var text = obj.innerHTML;
+                const myArray = text.replace('<br data-v-5504b43d=\"\">', '').split(",");
+                var newText = myArray[1] + "," + myArray[0];
+                await navigator.clipboard.writeText(newText);
+                console.log("after conversion");
+                console.log(obj);
+
+            }
+
+            async function getBing(input) {
+                var obj2 = $("#baseMapContainer > div:nth-child(1) > img")[0];
+                obj2.click();
+                console.log(obj2);
+                var obj = $("#baseMapSelection > img")[0];
+                obj.click();
+
+            }
+
+
+            async function gsv(input) {
+                var btn = $("#ANSITools > div > div > div > div > div:nth-child(1) > button")[0];
+                btn.click();
+                var map = $("#map");
+                map.click();
+            }
+
+
+
+            async function chk_seg1(input) {
+
+                check_pts[0] = 1;
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    console.log(lyrs[i]);
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+
+                }
+
+
+                let segLyr = $("#road_segments > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                segLyr.dispatchEvent(new Event('click'));
+                segBtn.click();
+                ansiBtn.click();
+            }
+
+
+
+            async function chk_lane2(input) {
+                check_pts[1] = 1;
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+
+
+                let laneLyr = $("#lanes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneLyr.dispatchEvent(new Event('click'));
+                laneBtn.click();
+                ansiBtn.click();
+                setTimeout(showLidar, 2000);
+
+            }
+
+
+
+            async function chk_lnpt3(input) {
+                check_pts[2] = 1;
+                try {
+                speed = $("#editor9")[0];
+                console.log(speed);
+                $("#aboutBtn").html(" " + speed.innerHTML + " ");
+                //.text().replace(/\n/g,' ').replaceAll(" ","");
+                }
+                catch (exceptionVar) {
+                    //
+                }
+
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+
+
+                let laneLineAttrLyr = $("#lane_line_attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneLineAttrLyr.dispatchEvent(new Event('click'));
+                if (!hasClass(laneLineAttrBtn, "available-enabled")) {
+                    laneLineAttrBtn.click();
+                }
+
+                let laneLinePtLyr = $("#lane_line_points > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneLinePtLyr.dispatchEvent(new Event('click'));
+                if (!hasClass(laneLinePtBtn, "available-enabled")) {
+                    laneLinePtBtn.click();
+                }
+
+
+                let laneCenterPtLyr = $("#lane_center_points > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneCenterPtLyr.dispatchEvent(new Event('click'));
+                if (!hasClass(laneCenPtBtn, "available-enabled")) {
+                    laneCenPtBtn.click();
+                }
+
+                let laneLineLyr = $("#lane_lines > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneLineLyr.dispatchEvent(new Event('click'));
+                laneLineBtn.click();
+                ansiBtn.click();
+
+            }
+
+            async function chk_ed4(input) {
+                check_pts[3] = 1;
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+
+                let edgeAttrLyr = $("#edge_attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                edgeAttrLyr.dispatchEvent(new Event('click'));
+                let edgePtLyr = $("#road_edge_points > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                edgePtLyr.dispatchEvent(new Event('click'));
+                let edgeLyr = $("#edges > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                edgeLyr.dispatchEvent(new Event('click'));
+
+
+                edgeAttrBtnBtn.click();
+                edgePtBtn.click();
+                edgeBtn.click();
+                ansiBtn.click();
+            }
+
+            async function chk_xing5(input) {
+                check_pts[4] = 1;
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+
+
+
+
+
+                let rtdLyr = $("#regulatory_traffic_device > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                rtdLyr.dispatchEvent(new Event('click'));
+                let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                signLyr.dispatchEvent(new Event('click'));
+                let laneAttrLyr = $("#lane_attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                laneAttrLyr.dispatchEvent(new Event('click'));
+
+                //pmBtn.click();
+                //pmConnBtn.click();
+                rtdBtn.click();
+                signBtn.click();
+                //signConnBtn.click();
+                laneAttrBtn.click();
+
+            }
+            async function chk_spd6(input) {
+                check_pts[5] = 1;
+                // alert(speed.innerHTML);
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+
+                lidar.click();
+
+
+                getBing();
+
+                //let laneLyr= $("#lanes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //laneLyr.dispatchEvent(new Event('click'));
+                //laneBtn.click();
+
+                let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                signLyr.dispatchEvent(new Event('click'));
+                signBtn.click();
+
+                var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                ansiLyr.dispatchEvent(new Event('click'));
+                ansiBtn.click();
+
+            }
+            async function ansi(input) {
+                var errorMsg = "Steps Unchecked:";
+                const errorMessage = ["Segment", "Lane", "Lane Lines", "Edge", "X'ing /Sign", "Speed"];
+                for (let i = 0; i < check_pts.length; i++) {
+                  if (check_pts[i] === 0) {
+                    errorMsg += "\n Step #"+ (i+1) +" - " + errorMessage[i];
+                  }
+                }
+                if (errorMsg !== "Steps Unchecked:") {
+                    alert(errorMsg);
+                }
+
+                gobtn.click();
+                gobtn.click();
+
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+
+
+                var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                ansiLyr.dispatchEvent(new Event('click'));
+                ansiBtn.click();
+
+
+            }
+            async function notes(input) {
+
+                let segBtn = $("#road_segments > div.col-sm-8.col > button")[0];
+                let laneLineBtn = $("#lane_lines > div.col-sm-8.col > button")[0];
+                let laneLinePtBtn = $("#lane_line_points > div.col-sm-8.col > button")[0];
+                let laneBtn = $("#lanes > div.col-sm-8.col > button")[0];
+                let laneAttrBtn = $("#lane_attributes > div.col-sm-8.col > button")[0];
+                let laneLineAttrBtn = $("#lane_line_attributes > div.col-sm-8.col > button")[0];
+                let laneCenPtBtn = $("#lane_center_points > div.col-sm-8.col > button")[0];
+                let edgeBtn = $("#edges > div.col-sm-8.col > button")[0];
+                let edgeAttrBtnBtn = $("#edge_attributes > div.col-sm-8.col > button")[0];
+                let edgePtBtn = $("#road_edge_points > div.col-sm-8.col > button")[0];
+                //let rtdBtn = $("#regulatory_traffic_device > div.col-sm-8.col > button")[0];
+                //let signBtn = $("#signs > div.col-sm-8.col > button")[0];
+                //let signConnBtn = $("#sign_lane_connections > div.col-sm-8.col > button")[0];
+                //let pmBtn = $("#pavement_markings > div.col-sm-8.col > button")[0];
+                //let pmConnBtn = $("#pavement_markings_conn > div.col-sm-8.col > button")[0];
+                let faBtn = $("#functional_authority > div.col-sm-8.col > button")[0];
+                let ansiBtn = $("#ANSI > div.col-sm-8.col > button")[0];
+
+                var lidar = $("#expandableLidarToggle > div > div:nth-child(2) > svg")[0].closest("div");
+                if (!hasElement("lidarTiles")) {
+                    lidar.click();
+                }
+
+
+                let lyrs = [segBtn, laneLineBtn, laneLinePtBtn, laneBtn, laneAttrBtn, laneLineAttrBtn, laneCenPtBtn, edgeBtn, edgeAttrBtnBtn, edgePtBtn,  faBtn, ansiBtn]
+                for (var i = 0; i < lyrs.length; i++) {
+                    if (hasClass(lyrs[i], "available-enabled")) {
+                        lyrs[i].click();
+                    }
+                }
+                var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                ansiLyr.dispatchEvent(new Event('click'));
+                ansiBtn.click();
+
+                var obj2 = $("#togglePass")[0];
+                obj2.click();
+                var notetext = $("#notes")[0];
+                const text = await navigator.clipboard.readText();
+                notetext.value = text;
+                notetext.dispatchEvent(new Event('input'));
+
+            }
+
+            //--- Style our newly added elements using CSS.
+
+            GM_addStyle(' #myContainer {position:absolute !important;top: 10px;left: 500px;font-size:   20px;background:  #f0f0f0;border: 1px outset black;margin: 5px;opacity:100; z-index:1100;padding:5px 20px; } .btn-cmd {cursor: pointer;border-radius:10px;background-color:#99d8c9;width:80px; } #myContainer p {color:  red;background: blue; }');
+
+
+
+
+            alert("function called");
+
+
+
+
+        }, 5000)
+    }  else if (task === "NISSAN") {
         setTimeout(function() {
 
             // zoom widget
