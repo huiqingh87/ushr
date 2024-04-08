@@ -27,9 +27,9 @@
    //Please input the MMP login credential here
 
    // add username for MMP
-    uname.value = "hhuang@ushrauto.com";
+    uname.value = "xxx@ushrauto.com";
     // add password for MMP
-    pwd.value = "cupcake2022@MSU";
+    pwd.value = "xxx";
    //-----------------------------------------------
 
     uname.dispatchEvent(new Event('input'));
@@ -1614,17 +1614,20 @@
 
 
 
-                let rtdLyr = $("#regulatory_traffic_device > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                rtdLyr.dispatchEvent(new Event('click'));
-                let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                signLyr.dispatchEvent(new Event('click'));
+                //let rtdLyr = $("#regulatory_traffic_device > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //rtdLyr.dispatchEvent(new Event('click'));
+
+                //let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //signLyr.dispatchEvent(new Event('click'));
+
+
                 let laneAttrLyr = $("#lane_attributes > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 laneAttrLyr.dispatchEvent(new Event('click'));
 
                 //pmBtn.click();
                 //pmConnBtn.click();
-                rtdBtn.click();
-                signBtn.click();
+                //rtdBtn.click();
+                //signBtn.click();
                 //signConnBtn.click();
                 laneAttrBtn.click();
 
@@ -1677,9 +1680,9 @@
 
 
 
-                let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
-                signLyr.dispatchEvent(new Event('click'));
-                signBtn.click();
+                //let signLyr = $("#signs > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
+                //signLyr.dispatchEvent(new Event('click'));
+                //signBtn.click();
 
                 var ansiLyr = $("#ANSI > div.col-sm-4.center.col > svg.img-fluid.cursor.mx-2.pb-1.svg-inline--fa.fa-long-arrow-alt-up.fa-w-8")[0];
                 ansiLyr.dispatchEvent(new Event('click'));
